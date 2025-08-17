@@ -11,16 +11,27 @@ This Flask web application lets you:
 
 ## 📁 Project Structure
 
+
 project-root/
+
 ├── app.py
+
 ├── models/
+
 │ ├── xgb_model.pkl
+
 │ └── prophet_model.pkl
+
 ├── templates/
+
 │ └── index.html
+
 ├── static/
+
 ├── requirements.txt
+
 ├── Dockerfile
+
 └── README.md
 
 
