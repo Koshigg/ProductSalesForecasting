@@ -1,8 +1,5 @@
-
-<<<<<<< HEAD
 This Flask web application lets you:
 - Upload a CSV to predict **daily sales** using a trained XGBoost model
-- Enter data manually for single-point prediction
 - Generate **weekly sales forecasts** using a Prophet time series model
 - View results in an **interactive table**
 - Run locally or as a **Docker container**
