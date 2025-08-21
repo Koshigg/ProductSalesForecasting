@@ -11,16 +11,27 @@ This Flask web application lets you:
 
 ## 📁 Project Structure
 
+
 project-root/
+
 ├── app.py
+
 ├── models/
+
 │ ├── xgb_model.pkl
+
 │ └── prophet_model.pkl
+
 ├── templates/
+
 │ └── index.html
+
 ├── static/
+
 ├── requirements.txt
+
 ├── Dockerfile
+
 └── README.md
 
 
@@ -93,6 +104,7 @@ Push this repo to GitHub and deploy using services like:
     EC2
     or your own on-prem server
 
+<<<<<<< HEAD
 🧑‍💻 Author
 
 Name: Kousalya R
@@ -102,3 +114,7 @@ Date: August 2025
 Version: 1.0
 
 Last Updated: 2025-08-21 18:47:33
+=======
+👤 Author
+Kousalya R(Data Scientist)
+>>>>>>> 03d58aee7dab0bb303b2864156e8f87872ed3c76
