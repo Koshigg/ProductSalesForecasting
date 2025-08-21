@@ -1,18 +1,24 @@
-# Use official Python base image
+# Use official lightweight Python image
 FROM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
 
-# Copy requirements and install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy files
+COPY . /app
 
-# Copy rest of the code
-COPY . .
+# Install system dependencies for Prophet
+RUN apt-get update && \
+    apt-get install -y build-essential libpython3-dev python3-dev \
+    libatlas-base-dev libgeos-dev && \
+    apt-get clean
 
-# Expose the Flask default port
+# Install Python dependencies
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+# Expose the default Flask port
 EXPOSE 5000
 
-# Run the application
+# Run the app
 CMD ["python", "app.py"]

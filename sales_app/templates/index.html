@@ -16,6 +16,7 @@
             font-weight: bold;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -120,6 +121,62 @@
         </form>
     </div-->
 
+    {% if forecast_data %}
+    <div class="form-section mt-5">
+        <h5 class="mb-3">📈 12-Week Sales Forecast (Prophet)</h5>
+        <canvas id="forecastChart" height="100"></canvas>
+    </div>
+
+    <script>
+        const forecastData = {{ forecast_data | tojson }};
+        const labels = forecastData.map(d => d.Date);
+        const forecast = forecastData.map(d => d.Forecast);
+        const lower = forecastData.map(d => d["Lower Bound"]);
+        const upper = forecastData.map(d => d["Upper Bound"]);
+
+        const ctx = document.getElementById('forecastChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Forecast',
+                        data: forecast,
+                        borderColor: 'blue',
+                        fill: false
+                    },
+                    {
+                        label: 'Lower Bound',
+                        data: lower,
+                        borderColor: 'lightblue',
+                        borderDash: [5, 5],
+                        fill: false
+                    },
+                    {
+                        label: 'Upper Bound',
+                        data: upper,
+                        borderColor: 'lightblue',
+                        borderDash: [5, 5],
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+    {% endif %}
+
     <!-- Output Table -->
     {% if predictions is defined and not predictions.empty %}
     <div class="form-section">
@@ -144,6 +201,9 @@
         </table>
     </div>
     {% endif %}
+
+
+
 </div>
 
 <!-- Scripts -->
